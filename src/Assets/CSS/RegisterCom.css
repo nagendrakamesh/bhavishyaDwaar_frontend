@@ -1,0 +1,20 @@
+#RegisterCom{
+    background-color: #F7F9F9;
+  }
+  #header{
+    padding: 10px;
+  }
+  #register_img{
+    margin-top: 17vh;
+  }
+  .content{
+    border-radius: 20px;
+    padding: 15px;
+    margin-left: 25vw;
+    margin-right: 15vw;
+    margin-bottom: 5vh;
+    background-color:#FFFFFF;
+  }
+  #register_img{
+    float :left
+  }

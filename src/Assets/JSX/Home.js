@@ -1,7 +1,10 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import "../CSS/home.css";
 import '../CSS/footer.css';
+import HomeNav from './HomeNav';
+import HomeNavStud from './HomeNavStud';
+import HomeNavComp from './HomeNavComp';
 
 import Slide1 from '../PIC/Slide1.JPG';
 import Slide2 from '../PIC/Slide2.JPG';
@@ -9,35 +12,18 @@ import Slide3 from '../PIC/Slide3.JPG';
 
 const Home = () =>
   {
+
+    const stud = localStorage.getItem("student");
+    const comp = localStorage.getItem("company");
+
+    
      return (
         <div>
-          <div className='navBg'>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-body-tertiary-dark" id='hemanthnav'>
-        <div className="container-fluid">
-          <Link className="navbar-brand navbar_text" to='/'>Bhavishya Dwaar</Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link active navbar_text" aria-current="page" href="#bau_1">About Us</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active navbar_text" href="#top_companies">Top Companies</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active navbar_text" href="https://www.kmit.in/placements/placement.php" target="_blank">Our Placements</a>
-              </li>
-            </ul>
-            <div className="navbar-nav" id='sty1'>
-              <button className="nav-link active log_butt m-2" > <Link to="/Login" className="nolink">Login</Link></button>
-              <button className="nav-link active sig_butt m-2" ><Link to="/Register" className="nolink">SignUp</Link></button>
-            </div>
-          </div>
-        </div>
-      </nav>
-      </div>
+
+        <header>
+         {stud ? <HomeNavStud/> : comp ? <HomeNavComp/> : <HomeNav/>}
+        </header>
+
       <div id="carouselExampleIndicators" className="carousel slide">
         <div className="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>

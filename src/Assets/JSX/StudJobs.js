@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import '../CSS/StudJobs.css';
 
 
-export class StudJobs extends Component{
-    render(){
+const StudJobs = () => {
+    
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.clear();
+    navigate("/Login");
+  }
+
         return(
         <div id='studjobs'>
            <header>
@@ -26,9 +32,9 @@ export class StudJobs extends Component{
       
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         
-        <a className="navbar-brand mt-2 mt-lg-0" href="#">
+        <Link className="navbar-brand mt-2 mt-lg-0" to='/'>
           Bhavishya Dwar
-        </a>
+        </Link>
         
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item">
@@ -100,7 +106,7 @@ export class StudJobs extends Component{
               <Link to='/StudentDash' className="dropdown-item">My profile</Link>
             </li>
             <li>
-              <a className="dropdown-item" href="#">Logout</a>
+            <Link className="dropdown-item" onClick={logout} to="/Login">Logout</Link>
             </li>
           </ul>
         </div>
@@ -112,7 +118,9 @@ export class StudJobs extends Component{
   </header>
       
           <main>
-      
+              <br />
+              <br />
+              <hr />
               <div className="row container">
       
                   <div className="col-lg-3 mt-5" >
@@ -462,6 +470,6 @@ export class StudJobs extends Component{
           </main>
       </div>
         );
-    }
+    
 }
 export default StudJobs;

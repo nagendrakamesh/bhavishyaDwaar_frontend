@@ -1,9 +1,20 @@
 import React, {Component} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import '../CSS/dashboard.css';
 
 
-export class CompanyDash extends Component{
-    render(){
+const CompanyDash = () =>{
+
+  const auth = localStorage.getItem("company");
+
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.clear();
+    navigate("/Login");
+  }
+
+
+
         return(
             <div id='dashboard_body'>
             <header>
@@ -25,9 +36,9 @@ export class CompanyDash extends Component{
       
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         
-        <a className="navbar-brand mt-2 mt-lg-0" href="#">
+        <Link to='/' className="navbar-brand mt-2 mt-lg-0">
           Bhavishya Dwar
-        </a>
+        </Link>
         
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item">
@@ -102,7 +113,7 @@ export class CompanyDash extends Component{
               <a className="dropdown-item" href="#">My profile</a>
             </li>
             <li>
-              <a className="dropdown-item" href="#">Logout</a>
+              <Link className="dropdown-item" onClick={logout}>Logout</Link>
             </li>
           </ul>
         </div>
@@ -124,13 +135,13 @@ export class CompanyDash extends Component{
               <div className="card-body">
                 <img id="profileimage" src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=740&t=st=1676081222~exp=1676081822~hmac=467801bff8371b5cfe04491cd2f0d8ce854a076185c6a0250dd626c85ebd35a7" alt="profile"/>
                 <div id="profile_body">
-                <h4 className="card-title"  > Name  : H.N.K. Technologies</h4>
+                <h4 className="card-title"  > Name  : {JSON.parse(auth).name}</h4>
                 
                 
-                <h4 className="card-title" > E-Mail  : hnkservices@hnktech.com</h4>
-                <h4 className="card-title" > Location  : Hyderabad</h4>
+                <h4 className="card-title" > E-Mail  : {JSON.parse(auth).email}</h4>
+                <h4 className="card-title" > Location  : {JSON.parse(auth).location}</h4>
                 <br/><br/>
-                <a href="#" className="btn btn-primary" id="editprof_1" ><b>Edit Profile</b></a>
+                <Link to='/CompanyDash/EditProfile' className="btn btn-primary" id="editprof_1" ><b>Edit Profile</b></Link>
                 <a href="#" className="btn btn-primary" id="editprof_2" ><b>Add a Job</b></a>
                 </div>
               </div>
@@ -155,15 +166,12 @@ export class CompanyDash extends Component{
     </main>
 
     <div>
-        <br/>
-        <br/>
-        <br/>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </div>
     
 
     </div>
         );
-    }
+    
 }
 export default CompanyDash;

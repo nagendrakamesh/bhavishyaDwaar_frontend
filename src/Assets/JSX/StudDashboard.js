@@ -1,10 +1,19 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React , {Component} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import '../CSS/dashboard.css';
 
 
-export class StudDashboard extends Component{
-    render(){
+const StudDashboard = () => {
+
+  const auth = localStorage.getItem("student");
+  
+
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.clear();
+    navigate("/Login");
+  }
+
         return(
             <div id='dashboard_body'>
             <header>
@@ -26,9 +35,9 @@ export class StudDashboard extends Component{
       
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         
-        <a className="navbar-brand mt-2 mt-lg-0" href="#">
+        <Link className="navbar-brand mt-2 mt-lg-0" to='/'>
           Bhavishya Dwar
-        </a>
+        </Link>
         
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item">
@@ -100,7 +109,7 @@ export class StudDashboard extends Component{
             <Link to='/StudentDash' className="dropdown-item">My profile</Link>
             </li>
             <li>
-              <a className="dropdown-item" href="#">Logout</a>
+              <Link className="dropdown-item" onClick={logout} to="/Login">Logout</Link>
             </li>
           </ul>
         </div>
@@ -122,13 +131,13 @@ export class StudDashboard extends Component{
               <div className="card-body">
                 <img id="profileimage" src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=740&t=st=1676081222~exp=1676081822~hmac=467801bff8371b5cfe04491cd2f0d8ce854a076185c6a0250dd626c85ebd35a7" alt="profile"/>
                 <div id="profile_body">
-                <h4 className="card-title"  > Name  : Nagendra Kamesh M S</h4>
+                <h4 className="card-title"  > Name  : {JSON.parse(auth).name}</h4>
                 
-                <h4 className="card-title" > Roll No  : 21BD1A0536</h4>
+                <h4 className="card-title" > Roll No  : {JSON.parse(auth).rollno}</h4>
                 
-                <h4 className="card-title" > E-Mail  : kameshoncall@gmail.com</h4>
+                <h4 className="card-title" > E-Mail  : {JSON.parse(auth).email}</h4>
                 <br/><br/>
-                <a href="#" className="btn btn-primary" id="editprof_1" ><b>Edit Profile</b></a>
+                <Link className="btn btn-primary" to='/StudentDash/EditProfile' id="editprof_1" ><b>Edit Profile</b></Link>
                 <a href="#" className="btn btn-primary" id="editprof_2" ><b>Update Resume</b></a>
                 </div>
               </div>
@@ -146,7 +155,7 @@ export class StudDashboard extends Component{
                 <div className="row">
 
                 <div className="col col-lg-3 col-md-6">
-                <div className="card jobcard" id='sty_3'>
+                <div className="card jobcard" id='sty_31'>
                     <div className="card-body" id="cardBody">
                       <h5 className="card-title"><img src="https://play-lh.googleusercontent.com/kHRf85euDvW-Kg7ThXK2vv-J-Yye9uxoo6GQvUcAwudNRz1sQvXubAl_m2bu6KJofA" alt="img" className="compimg"/> Microsoft</h5>
                       <p className="card-text">Position : SDE-1 <br/> 
@@ -202,22 +211,19 @@ export class StudDashboard extends Component{
                 </div>
                 <br/><br/>
                 <div id='cen'>
-                    <a href="#"><button type="button" className="btn btn-light" id='sty_7'><b>Browse for jobs</b></button></a>
+                    <Link to='/StudentDash/Jobs'><button type="button" className="btn btn-light" id='sty_7'><b>Browse for jobs</b></button></Link>
                     </div>
             </div>
         </div>
     </main>
 
     <div>
-        <br/>
-        <br/>
-        <br/>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </div>
     
 
     </div>
         );
-    }
+    
 }
 export default StudDashboard;

@@ -1,10 +1,39 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import '../CSS/RegisterSt.css';
 import register from "../PIC/register.png";
 
-export class RegisterSt extends Component{
-    render(){
+const RegisterSt = () =>{
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [rollno, setRollno] = useState("");
+    const [phone, setPhone] = useState("");
+    const navigate = useNavigate();
+    const collectData = async () => {
+        let result = await fetch('http://localhost:5000/registerStudent', {
+            method : "post",
+            body : JSON.stringify({name, email, password, rollno, phone}),
+            headers : {
+                mode: 'no-cors',
+                'Content-Type' : 'application/json',
+                "Access-Control-Allow-Origin" : "*",
+                "Access-Control-Allow-Credentials" : true 
+            }
+        });
+        result = await result.json();
+        navigate('/Login');
+    }
+
+
+    // useEffect = () => {
+    //   const auth = localStorage.getItem("user");
+    //   if(auth){
+    //     navigate("/StudentDash");
+    //   }
+    // }
+
         return(
 
             <><header>
@@ -26,60 +55,45 @@ export class RegisterSt extends Component{
                             <div class="row">
                                 <div class="col">
                                     <h6>&nbsp; Enter Full Name</h6>
-                                    <input type="text" class="form-control" placeholder="Ankit Sharma" aria-label="First name" required />
+                                    <input type="text" class="form-control" placeholder="Ankit Sharma" aria-label="First name" value={name} onChange={(event) => setName(event.target.value)} required />
                                 </div>
                             </div>
                             <br />
                             <div class="row">
                                 <div class="col">
                                     <h6>&nbsp; Enter Email Id</h6>
-                                    <input type="email" class="form-control" placeholder="example@email.com" aria-label="First name" required />
+                                    <input type="email" class="form-control" placeholder="example@email.com" aria-label="First name" value={email} onChange={(event) => setEmail(event.target.value)} required />
                                 </div>
                             </div>
                             <br />
                             <div class="row">
                                 <div class="col">
                                     <h6>&nbsp; Enter Password</h6>
-                                    <input type="password" class="form-control" placeholder="Must be atleast 6 characters" aria-label="First name" required />
+                                    <input type="password" class="form-control" placeholder="Must be atleast 6 characters" aria-label="First name" value={password} onChange={(event) => setPassword(event.target.value)} required />
                                 </div>
                             </div>
                             <br />
                             <div class="container">
-                                <div class="row">
-                                    <div class="col">
-                                        <h6>&nbsp;Select Programming Languages</h6>
-                                        <select class="form-select" data-mdb-placeholder="This is a placeholder">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                        <label class="form-label select-label">Programming Language</label>
-                                    </div>
-
-                                    <div class="col">
-                                        <h6>&nbsp;Select Technologies</h6>
-                                        <select class="form-select">
-                                            <option selected disabled>Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <h6>&nbsp;Select Development</h6>
-                                        <select class="form-select">
-                                            <option selected disabled>Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                    </div>
-
-
+                               
+                            <div class="row">
+                                <div class="col">
+                                    <h6>&nbsp; Enter Roll Number</h6>
+                                    <input type="text" class="form-control" placeholder="21BD1A0001" aria-label="First name" value={rollno} onChange={(event) => setRollno(event.target.value)} required />
                                 </div>
                             </div>
 
                             <br />
+
+                            <div class="row">
+                                <div class="col">
+                                    <h6>&nbsp; Enter Phone Number</h6>
+                                    <input type="number" class="form-control" placeholder="+91 9876543210" aria-label="First name" value={phone} onChange={(event) => setPhone(event.target.value)} required />
+                                </div>
+                            </div>
+                                
+                            <br />
+
+
                             <div class="row">
                                 <div class="col">
                                     <h6>&nbsp;Upload Resume (.pdf file less than 2MB)</h6>
@@ -94,9 +108,13 @@ export class RegisterSt extends Component{
                                         </label>
                                     </div>
                                     <br />
-                                    <a href="#"><button type="submit" class="btn btn-dark"><b>Register Now</b></button></a>
+                                    <button type="submit" class="btn btn-dark" onClick={collectData}><b>Register Now</b></button>
                                 </div>
                             </div>
+
+
+                            </div>
+
 
                         </form>
                     </div>
@@ -106,6 +124,6 @@ export class RegisterSt extends Component{
     
 
         );
-    }
+    
 }
   export default RegisterSt;

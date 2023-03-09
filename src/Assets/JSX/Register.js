@@ -1,12 +1,20 @@
-import React, {Component} from "react";
-import {Link} from 'react-router-dom';
+import React, {useEffect} from "react";
+import {Link, useNavigate} from 'react-router-dom';
 
 import '../CSS/Register.css'
 import student from'../PIC/RegisterSt.jpg';
 import company from '../PIC/RegisterCmp.jpg';
 
-export class Register extends Component{
-    render(){
+const Register = () => {
+
+    // const navigate = useNavigate();
+    // useEffect = () => {
+    //   const auth = localStorage.getItem("user");
+    //   if(auth){
+    //     navigate("/StudentDash");
+    //   }
+    // }  
+
         return(
             <div>
               <header>
@@ -48,6 +56,6 @@ export class Register extends Component{
     </main>
     </div>
         );
-    }
+    
 }
 export default Register;

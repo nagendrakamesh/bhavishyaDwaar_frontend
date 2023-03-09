@@ -1,15 +1,56 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "../CSS/login.css";
-import {Link} from "react-router-dom";
-
+import {Link, useNavigate} from "react-router-dom";
+import { useEffect } from 'react';
 
 const Login = () =>
   {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const handlelogin = async (e) =>{
+      e.preventDefault();
+      let result = await fetch("http://localhost:5000/login",{
+        method : 'post',
+        body : JSON.stringify({email,password}),
+        headers : {
+          mode: 'no-cors',
+          'Content-Type' : 'application/json',
+          "Access-Control-Allow-Origin" : "*",
+          "Access-Control-Allow-Credentials" : true 
+        }
+      });
+      result = await result.json();
+
+      if(result.rollno){
+        localStorage.setItem("student", JSON.stringify(result));
+        navigate('/StudentDash');
+      }
+      else if(result.logo){
+        localStorage.setItem("company", JSON.stringify(result));
+        navigate('/CompanyDash');
+      }
+      else{
+        console.error("Not found!");
+      }
+      
+    }
+
+
+    const navigate = useNavigate();
+    useEffect(() => {
+      const auth = localStorage.getItem('student');
+      if(auth){
+        navigate('/StudentDash');
+      }
+    })
+
+
      return (
        <section className="background-radial-gradient overflow-hidden" id='background-radial-gradient'>
                     <div id='m_1'>
-                    <Link  id='nolink_1' to='/'><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16" href='https://www.w3schools.com'>
-                      <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" id='i_1'/>
+                    <Link  id='nolink_1' to='/'><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-arrow-return-left" viewBox="0 0 16 16" href='https://www.w3schools.com'>
+                      <path fillRule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" id='i_1'/>
                     </svg> Return</Link>
                     </div>
                     
@@ -33,43 +74,39 @@ const Login = () =>
         
                 <div className="card bg-glass" id='bg-glass'>
                   <div className=" -body px-4 py-5 px-md-5">
+
                     <form>
                     
                       <div className="form-outline mb-4">
-                        <label className="form-label" for="form3Example3">Email address</label>
-                        <input type="email" id="form3Example3" className="form-control" />
+                        <label className="form-label" htmlFor="form3Example3">Email address</label>
+                        <input type="email" id="form3Example3" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        
                       </div>
         
                     
                       <div className="form-outline mb-4">
-                        <label className="form-label" for="form3Example4">Password</label>
-                        <input type="password" id="form3Example4" className="form-control" />
+                        <label className="form-label" htmlFor="form3Example4">Password</label>
+                        <input type="password" id="form3Example4" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
                         <br />
-                        <Link to = './Login/OTP' target='_blank'>Forgot Password?</Link>
+                        <Link to = '/Login/OTP' target='_blank'>Forgot Password?</Link>
                       </div>
 
-                      <div class="form-check d-flex justify-content-center mb-4">
+                      {/* <div className="form-check d-flex justify-content-center mb-4">
                           <input className="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault"/>
-                           <label className="form-check-label" for="flexCheckDefault">
+                           <label className="form-check-label" htmlFor="flexCheckDefault">
                                  Remember me
                              </label>
-                      </div>
-                      {/* <div className="form-check d-flex justify-content-center mb-4">
-                         <input className="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked /> 
-                        <label className="form-check-label" for="form2Example33">
-                          Remember Me
-                        </label>
                       </div> */}
         
     
                       <div className="text-center">
-                      <button type="submit" className="btn btn-primary btn-block mb-4">
+                      <button type="button" className="btn btn-primary btn-block mb-4" onClick={(e) => handlelogin(e)}>
                         Sign In
                       </button>
                     </div>
         
                       <div className="text-center">
-                        <p>Don't have an account? <Link to='/Register/RegisterSt'>Register </Link></p>
+                        <p>Don't have an account? <Link to='/Register'>Register </Link></p>
                       </div>
                     </form>
                   </div>

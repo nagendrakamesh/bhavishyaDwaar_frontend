@@ -18,3 +18,14 @@
   #register_img{
     float :left
   }
+  #return-comp
+  {
+    margin-left: 100px;
+    margin-top: 10px;
+  }
+  #nolink_2{
+    text-decoration: none;
+    color: white !important;
+    font-size: 25px;
+    font-weight: 600;
+  }

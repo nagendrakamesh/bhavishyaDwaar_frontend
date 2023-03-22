@@ -26,7 +26,7 @@ const Login = () =>
         localStorage.setItem("student", JSON.stringify(result));
         navigate('/StudentDash');
       }
-      else if(result.logo){
+      else if(result.name){
         localStorage.setItem("company", JSON.stringify(result));
         navigate('/CompanyDash');
       }
@@ -57,6 +57,7 @@ const Login = () =>
           <div className="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
             <div className="row gx-lg-5 align-items-center mb-5">
               <div className="col-lg-6 mb-5 mb-lg-0" id='ok_2'>
+              <div className='d-none d-lg-block d-md-block'>
                 <h1 className="my-5 display-5 fw-bold ls-tight" id='ok_3'>
                   Opportunities don't<br />
                   <span id='ok_4'> happen, you create them</span>
@@ -66,7 +67,9 @@ const Login = () =>
                   <br/>
                   Opportunities Awaiting You
                 </p>
+                </div>
               </div>
+              
         
               <div className="col-lg-6 mb-5 mb-lg-0 position-relative">
                 <div id="radius-shape-1" className="position-absolute rounded-circle shadow-5-strong"></div>
@@ -100,7 +103,7 @@ const Login = () =>
         
     
                       <div className="text-center">
-                      <button type="button" className="btn btn-primary btn-block mb-4" onClick={(e) => handlelogin(e)}>
+                      <button type="submit" className="btn btn-primary btn-block mb-4" onClick={(e) => handlelogin(e)}>
                         Sign In
                       </button>
                     </div>

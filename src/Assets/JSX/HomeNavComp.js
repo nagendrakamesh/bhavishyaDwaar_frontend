@@ -26,7 +26,7 @@ const HomeNavComp = () => {
                 <a className="nav-link active navbar_text" aria-current="page" href="#bau_1">About Us</a>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active navbar_text" aria-current="page" to='/StudentDash/Jobs'>Jobs</Link>
+                <Link className="nav-link active navbar_text" aria-current="page" to='/CompanyDash/Jobs'>Jobs Posted</Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link active navbar_text" href="#top_companies">Top Companies</a>

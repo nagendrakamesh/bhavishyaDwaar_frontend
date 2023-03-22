@@ -18,7 +18,7 @@ const Home = () =>
 
     
      return (
-        <div>
+        <div className='homebody'>
 
         <header>
          {stud ? <HomeNavStud/> : comp ? <HomeNavComp/> : <HomeNav/>}
@@ -183,7 +183,7 @@ const Home = () =>
             </div>
         </div>
         <div className="vl col-1"></div>
-        <div className="col-4">
+        <div className="col-5">
           <h4>Hemanth Kumar K</h4>
             <div className="container p-4">
               

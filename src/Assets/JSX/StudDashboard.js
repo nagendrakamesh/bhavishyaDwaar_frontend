@@ -7,7 +7,6 @@ const StudDashboard = () => {
 
   const auth = localStorage.getItem("student");
   
-
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
@@ -129,7 +128,7 @@ const StudDashboard = () => {
             <br />
             <div className="card" id='sty_1' >
               <div className="card-body">
-                <img id="profileimage" src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=740&t=st=1676081222~exp=1676081822~hmac=467801bff8371b5cfe04491cd2f0d8ce854a076185c6a0250dd626c85ebd35a7" alt="profile"/>
+                <div className='d-none d-md-block d-lg-block'> <img id="profileimage" src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=740&t=st=1676081222~exp=1676081822~hmac=467801bff8371b5cfe04491cd2f0d8ce854a076185c6a0250dd626c85ebd35a7" alt="profile"/> </div>
                 <div id="profile_body">
                 <h4 className="card-title"  > Name  : {JSON.parse(auth).name}</h4>
                 

@@ -12,8 +12,9 @@ import StudPrivateContent from './Assets/JSX/StudPrivateContent';
 import CompPrivateContent from './Assets/JSX/CompPrivateContent';
 import StudEditProfile from './Assets/JSX/StudEditProfile';
 import CompEditProfile from './Assets/JSX/CompEditProfile';
+import CompanyJobs from './Assets/JSX/CompanyJobs';
+import JobsList from './Assets/JSX/JobsList';
 
-import RegTemp from './Assets/JSX/RegTemp';
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
         <Route element={<CompPrivateContent/>}>
         <Route path='/CompanyDash' element={<CompanyDash/>}></Route>
         <Route path='/CompanyDash/EditProfile' element={<CompEditProfile/>}></Route>
+        <Route path='/CompanyDash/AddJob' element={<CompanyJobs/>}></Route>
+        <Route path='/CompanyDash/JobsPosted' element={<JobsList/>}></Route>
         </Route>
 
 
@@ -39,7 +42,6 @@ function App() {
         <Route path='/Login/OTP' element={<OTP/>}></Route>
         <Route path='/Register/Companies' element={<RegisterCom/>}></Route>
 
-        <Route path='/Hemanth' element={<RegTemp/>}></Route>
       </Routes>
     </div>
   );

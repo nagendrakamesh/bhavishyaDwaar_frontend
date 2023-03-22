@@ -16,7 +16,7 @@ const RegisterCom = () =>{
   const collectData = async () => {
     let result = await fetch('http://localhost:5000/registerCompany', {
         method : "post",
-        body : JSON.stringify({name, email, password, phone, logo}),
+        body : JSON.stringify({name, email, password, phone, location, logo}),
         headers : {
             mode: 'no-cors',
             'Content-Type' : 'application/json',
@@ -99,7 +99,7 @@ const RegisterCom = () =>{
               <div className="row">
                 <div className="col">
                     <h6>&nbsp; Enter Company's logo link (small square shapped logo)</h6>
-                    <input type="link" className="form-control" placeholder="www.companyname.com/image" aria-label="First name" value={logo} onChange={(event) => setLogo(event.target.value)} required />
+                    <input type="link" className="form-control" placeholder="www.logolink.com/logoimage --> (Logo which is small, square shapped and having a white background)" aria-label="First name" value={logo} onChange={(event) => setLogo(event.target.value)} />
                     <br/>
                       <div className="form-check">
                         <input className="form-check-input" type="checkbox" id="gridCheck" required />

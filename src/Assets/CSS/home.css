@@ -117,7 +117,11 @@ margin-left: 6vw;
   margin-left: auto;
   }
   }
-  .fo
-  {
-    padding:10px;
-  }
+.fo
+{
+  padding:10px;
+}
+.homebody{
+  height: 100%;
+  width: 100%;
+}

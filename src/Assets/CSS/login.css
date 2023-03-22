@@ -77,3 +77,6 @@ color: whitesmoke !important;
   margin-left: 100px;
   margin-top: 10px;
 }
+section{
+  position: static !important;
+}

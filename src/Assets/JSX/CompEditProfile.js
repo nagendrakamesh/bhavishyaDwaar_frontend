@@ -22,7 +22,7 @@ const CompEditProfile = () => {
     <br/>
     <span><b>&nbsp; Company Name </b> </span>
     <div className="input-group">
-        <input type="text" className="form-control" value={JSON.parse(auth).name} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="text" className="form-control" placeholder={JSON.parse(auth).name} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
     <br/>

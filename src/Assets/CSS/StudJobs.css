@@ -31,8 +31,11 @@
   {
     float: right;
   }
-.jobcards{
+.jobcards-lg{
     width: 60vw;
+}
+.jobcards-sm{
+  width: 99%;
 }
 #card_holder{
     margin: 3vw;
@@ -58,4 +61,8 @@
 }
 .btn-outline-primary{
     float: right;
+}
+
+.filterbox{
+  position :relative;
 }

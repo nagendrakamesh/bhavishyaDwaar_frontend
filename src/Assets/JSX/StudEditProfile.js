@@ -1,12 +1,42 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, {useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 
 import '../CSS/editProf.css'
 import mechtree from '../PIC/mechtree.png'
 
+
 const StudEditProfile = () => {
 
     const auth = localStorage.getItem("student");
+
+    const _id = JSON.parse(auth)._id;
+    const [name, setName] = useState(JSON.parse(auth).name);
+    const [email, setEmail] = useState(JSON.parse(auth).email);
+    const [password, setPassword] = useState("");
+    const [password2, setPassword2] = useState("");
+    const [roll, setRoll] = useState(JSON.parse(auth).rollno);
+    const [phone, setPhone] = useState(JSON.parse(auth).phone);
+
+    const navigate = useNavigate();
+
+    const updateSt = async () => {
+        let result = await fetch ('http://localhost:5000/studentedit', {
+            method : 'post',
+            body : JSON.stringify({_id, name, email, password, phone}),
+            headers : {
+                mode: 'no-cors',
+                'Content-Type' : 'application/json',
+                "Access-Control-Allow-Origin" : "*",
+                "Access-Control-Allow-Credentials" : true 
+            }
+        });
+        result = await result.json();
+
+        window.alert("Details Updated Successfully!");
+        navigate('/CompanyDash');
+
+    }
+
 
     return(
 
@@ -22,38 +52,38 @@ const StudEditProfile = () => {
     <br/>
     <span><b>&nbsp; Full Name </b> </span>
     <div className="input-group">
-        <input type="text" className="form-control" value={JSON.parse(auth).name} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="text" className="form-control" placeholder="Ankit Sharma" value={name} onChange={(event) => setName(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
     <br/>
     <span><b>&nbsp; E-Mail  </b></span>
     <div className="input-group">
-        <input type="email" className="form-control" value={JSON.parse(auth).email} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="email" className="form-control" placeholder="example@email.com" value={email} onChange={(event) => setEmail(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
     <br/>
     <span><b>&nbsp; New Password  </b></span>
     <div className="input-group">
-        <input type="password" className="form-control" value={JSON.parse(auth).password} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="password" className="form-control" value={password} onChange={(event) => setPassword(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
 
     <br/>
     <span id="re-enter"><b>&nbsp; *Re-enter the above password</b></span>
     <div className="input-group">
-        <input type="password" className="form-control" value={JSON.parse(auth).password} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="password" className="form-control" value={password2} onChange={(event) => setPassword2(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
     <br/>
     <span><b>&nbsp; Roll Number  </b> </span>
     <div className="input-group">
-        <input type="text" className="form-control" value={JSON.parse(auth).rollno} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="text" className="form-control" placeholder="21BD1A0000" value={roll} onChange={(event) => setRoll(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
     <br/>
     <span><b>&nbsp; Phone Number </b> </span>
     <div className="input-group">
-        <input type="number" className="form-control" value={JSON.parse(auth).phone} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="number" className="form-control" placeholder="9876543210" value={phone} onChange={(event) => setPhone(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
     <br/>
@@ -66,7 +96,7 @@ const StudEditProfile = () => {
     </div>
     
     <div className="col-8">
-        <a href="#" className="btn btn-primary" ><b>Save Changes</b></a>
+        <button type='button' className="btn btn-primary" onClick={updateSt} ><b>Save Changes</b></button>
         <br/>
     </div>
 

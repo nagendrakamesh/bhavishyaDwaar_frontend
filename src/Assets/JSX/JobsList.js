@@ -14,7 +14,9 @@ const JobsList = () => {
     }, []);
 
     const getJobs = async() => {
-        let result = await fetch ('http://localhost:5000/jobs')
+       const auth = localStorage.getItem('company');
+       const compName = JSON.parse(auth).name;
+        let result = await fetch (`http://localhost:5000/jobs/${compName}`)
         result = await result.json()
             setJobs(result);
             // setSearchParam(result);

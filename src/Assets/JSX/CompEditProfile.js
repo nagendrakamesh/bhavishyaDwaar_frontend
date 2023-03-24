@@ -1,5 +1,5 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, {useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 
 import '../CSS/editProf.css'
 import mechtree from '../PIC/mechtree.png'
@@ -7,6 +7,36 @@ import mechtree from '../PIC/mechtree.png'
 const CompEditProfile = () => {
 
     const auth = localStorage.getItem("company");
+
+    const _id = JSON.parse(auth)._id;
+    const [name, setName] = useState(JSON.parse(auth).name);
+    const [email, setEmail] = useState(JSON.parse(auth).email);
+    const [password, setPassword] = useState("");
+    const [password2, setPassword2] = useState("");
+    const [location, setLocation] = useState(JSON.parse(auth).location);
+    const [phone, setPhone] = useState(JSON.parse(auth).phone);
+    const [logo, setLogo] = useState(JSON.parse(auth).logo);
+
+    const navigate = useNavigate();
+
+    const updateComp = async () => {
+        let result = await fetch ('http://localhost:5000/companyedit', {
+            method : 'post',
+            body : JSON.stringify({_id, name, email, location, logo, password, phone}),
+            headers : {
+                mode: 'no-cors',
+                'Content-Type' : 'application/json',
+                "Access-Control-Allow-Origin" : "*",
+                "Access-Control-Allow-Credentials" : true 
+            }
+        });
+        result = await result.json();
+
+        window.alert("Details Updated Successfully!");
+        navigate('/CompanyDash');
+
+    }
+
 
     return(
 
@@ -22,44 +52,44 @@ const CompEditProfile = () => {
     <br/>
     <span><b>&nbsp; Company Name </b> </span>
     <div className="input-group">
-        <input type="text" className="form-control" placeholder={JSON.parse(auth).name} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="text" className="form-control" placeholder="Google Inc." value={name} onChange={(event) => setName(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
     <br/>
     <span><b>&nbsp; E-Mail  </b></span>
     <div className="input-group">
-        <input type="email" className="form-control" value={JSON.parse(auth).email} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="email" className="form-control" placeholder="example@company.com" value={email} onChange={(event) => setEmail(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
     <br/>
     <span><b>&nbsp; New Password  </b></span>
     <div className="input-group">
-        <input type="password" className="form-control" value={JSON.parse(auth).password} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="password" className="form-control" value={password} onChange={(event) => setPassword(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
 
     <br/>
     <span id="re-enter"><b>&nbsp; *Re-enter the above password</b></span>
     <div className="input-group">
-        <input type="password" className="form-control" value={JSON.parse(auth).password} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="password" className="form-control" aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
     <br/>
     <span><b>&nbsp; Location  </b> </span>
     <div className="input-group">
-        <input type="text" className="form-control" value={JSON.parse(auth).location} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="text" className="form-control" placeholder="Hyderabad, India" value={location} onChange={(event) => setLocation(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
     <br/>
     <span><b>&nbsp; Phone Number </b> </span>
     <div className="input-group">
-        <input type="number" className="form-control" value={JSON.parse(auth).phone} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="number" className="form-control" placeholder="9876543210" value={phone} onChange={(event) => setPhone(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
     <br/>
     <span><b>&nbsp; Logo Link </b> </span>
     <div className="input-group">
-        <input type="link" className="form-control" value={JSON.parse(auth).logo} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="link" className="form-control" placeholder="www.logolink.com" value={logo} onChange={(event) => setLogo(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
     <br/>
@@ -72,7 +102,7 @@ const CompEditProfile = () => {
     </div>
     
     <div className="col-8">
-        <a href="#" className="btn btn-primary" ><b>Save Changes</b></a>
+        <button onClick={updateComp} className="btn btn-primary" ><b>Save Changes</b></button>
         <br/>
     </div>
 

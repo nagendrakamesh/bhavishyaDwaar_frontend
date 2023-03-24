@@ -20,7 +20,7 @@ const StudJobs = () => {
     }, []);
 
     const getJobs = async() => {
-        let result = await fetch ('http://localhost:5000/jobs');
+        let result = await fetch ('http://localhost:5000/studjobs');
         result = await result.json();
         setJobs(result);
         

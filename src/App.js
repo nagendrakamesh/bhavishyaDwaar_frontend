@@ -31,7 +31,8 @@ function App() {
         <Route path='/CompanyDash' element={<CompanyDash/>}></Route>
         <Route path='/CompanyDash/EditProfile' element={<CompEditProfile/>}></Route>
         <Route path='/CompanyDash/AddJob' element={<CompanyJobs/>}></Route>
-        <Route path='/CompanyDash/JobsPosted' element={<JobsList/>}></Route>
+         <Route path='/CompanyDash/JobsPosted' element={<JobsList/>}></Route>
+        {/* <Route path='/CompanyDash/JobsPosted/:comp' element={<JobsList/>}></Route> */}
         </Route>
 
 

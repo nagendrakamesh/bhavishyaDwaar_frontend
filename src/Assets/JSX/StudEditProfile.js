@@ -14,7 +14,7 @@ const StudEditProfile = () => {
     const [email, setEmail] = useState(JSON.parse(auth).email);
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
-    const [roll, setRoll] = useState(JSON.parse(auth).rollno);
+    const [rollno, setRoll] = useState(JSON.parse(auth).rollno);
     const [phone, setPhone] = useState(JSON.parse(auth).phone);
 
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ const StudEditProfile = () => {
     const updateSt = async () => {
         let result = await fetch ('http://localhost:5000/studentedit', {
             method : 'post',
-            body : JSON.stringify({_id, name, email, password, phone}),
+            body : JSON.stringify({_id, name, email, rollno, password, phone}),
             headers : {
                 mode: 'no-cors',
                 'Content-Type' : 'application/json',
@@ -33,7 +33,7 @@ const StudEditProfile = () => {
         result = await result.json();
 
         window.alert("Details Updated Successfully!");
-        navigate('/CompanyDash');
+        navigate('/StudentDash');
 
     }
 
@@ -77,7 +77,7 @@ const StudEditProfile = () => {
     <br/>
     <span><b>&nbsp; Roll Number  </b> </span>
     <div className="input-group">
-        <input type="text" className="form-control" placeholder="21BD1A0000" value={roll} onChange={(event) => setRoll(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
+        <input type="text" className="form-control" placeholder="21BD1A0000" value={rollno} onChange={(event) => setRoll(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
     <br/>

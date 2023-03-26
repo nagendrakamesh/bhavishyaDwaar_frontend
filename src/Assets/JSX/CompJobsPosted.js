@@ -76,7 +76,7 @@ const CompJobsPosted = () => {
    
    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
      <li className="nav-item">
-       <Link to='/CompanyDash/Jobs' className="nav-link active">Jobs Posted</Link>
+       <Link to='/CompanyDash/JobsPosted' className="nav-link active">Jobs Posted</Link>
      </li>
      <li className="nav-item">
        <a className="nav-link active" href="#">Companies</a>

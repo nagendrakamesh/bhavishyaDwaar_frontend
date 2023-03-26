@@ -43,7 +43,7 @@ const StudDashboard = () => {
             <Link to='/StudentDash/Jobs' className="nav-link active">Jobs</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link active" href="#">Companies</a>
+          <Link className="nav-link active" to='/StudentDash/CompanyList'>Companies</Link>
           </li>
         </ul>
         

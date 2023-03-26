@@ -12,6 +12,7 @@ const CompanyAddJobs = () => {
     const name = JSON.parse(auth).name;
     const logo = JSON.parse(auth).logo;
     const location = JSON.parse(auth).location;
+    const compid = JSON.parse(auth)._id;
 
     const [position, setPosition] = useState("");
     const [gpa, setGpa] = useState("");
@@ -57,9 +58,27 @@ const CompanyAddJobs = () => {
             }
         });
         result = await result.json();
+        makeField(result._id);
         window.alert("Added Job Successfully!");
         navigate('/CompanyDash');
         
+    }
+
+    const students = [];
+    const makeField = async (jobid) => {
+        let result = await fetch('http://localhost:5000/appliedJobs', {
+            method : "post",
+            body : JSON.stringify({
+                jobid, students, compid
+            }),
+            headers : {
+                mode: 'no-cors',
+                'Content-Type' : 'application/json',
+                "Access-Control-Allow-Origin" : "*",
+                "Access-Control-Allow-Credentials" : true 
+            }
+        });
+        result = await result.json();
     }
 
 

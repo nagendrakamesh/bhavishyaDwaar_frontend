@@ -2,8 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 
 import '../CSS/StudJobs.css';
+import Filterbox from './Filterbox';
 
-const JobsList = () => {
+
+const CompJobsPosted = () => {
 
     const auth = localStorage.getItem("company");
     // const [search,setSearchParam] = useState([""]);
@@ -138,7 +140,7 @@ const JobsList = () => {
                               </div>
                         </div>
                         <br/>
-                        <Link className="btn btn-outline-primary">Apply</Link>
+                        {/* <Link className="btn btn-outline-primary">Apply</Link> */}
                         <br/><br/>
 
                       </div>
@@ -154,4 +156,4 @@ const JobsList = () => {
         </div>
     );
 }
-export default JobsList;
+export default CompJobsPosted;

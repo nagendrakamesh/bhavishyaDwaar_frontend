@@ -12,8 +12,6 @@ const StudEditProfile = () => {
     const _id = JSON.parse(auth)._id;
     const [name, setName] = useState(JSON.parse(auth).name);
     const [email, setEmail] = useState(JSON.parse(auth).email);
-    const [password, setPassword] = useState("");
-    const [password2, setPassword2] = useState("");
     const [rollno, setRoll] = useState(JSON.parse(auth).rollno);
     const [phone, setPhone] = useState(JSON.parse(auth).phone);
 
@@ -22,7 +20,7 @@ const StudEditProfile = () => {
     const updateSt = async () => {
         let result = await fetch ('http://localhost:5000/studentedit', {
             method : 'post',
-            body : JSON.stringify({_id, name, email, rollno, password, phone}),
+            body : JSON.stringify({_id, name, email, rollno, phone}),
             headers : {
                 mode: 'no-cors',
                 'Content-Type' : 'application/json',
@@ -46,6 +44,7 @@ const StudEditProfile = () => {
 
     <div className="col-lg-8">
     <div className="editprofile">
+        <br /><br />
         <h2 id="editHeading">&nbsp;&nbsp; Edit Profile</h2>
     <div className="align-edit-profile">
 
@@ -61,7 +60,7 @@ const StudEditProfile = () => {
         <input type="email" className="form-control" placeholder="example@email.com" value={email} onChange={(event) => setEmail(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
-    <br/>
+    {/* <br/>
     <span><b>&nbsp; New Password  </b></span>
     <div className="input-group">
         <input type="password" className="form-control" value={password} onChange={(event) => setPassword(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
@@ -72,7 +71,7 @@ const StudEditProfile = () => {
     <span id="re-enter"><b>&nbsp; *Re-enter the above password</b></span>
     <div className="input-group">
         <input type="password" className="form-control" value={password2} onChange={(event) => setPassword2(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
-    </div>
+    </div> */}
 
     <br/>
     <span><b>&nbsp; Roll Number  </b> </span>
@@ -84,6 +83,12 @@ const StudEditProfile = () => {
     <span><b>&nbsp; Phone Number </b> </span>
     <div className="input-group">
         <input type="number" className="form-control" placeholder="9876543210" value={phone} onChange={(event) => setPhone(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
+    </div>
+
+    <br/>
+
+    <div className="input-group">
+        <h5>&nbsp; To change the password, <Link to='/StudentDash/ChangePassword'>click here</Link></h5>
     </div>
 
     <br/>
@@ -103,6 +108,7 @@ const StudEditProfile = () => {
     </div>
     <br/>
     <br/>
+    <br />
     </div>
     </div>
 

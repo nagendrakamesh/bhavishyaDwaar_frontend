@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import '../CSS/CompanyJobs.css';
 
-const CompanyJobs = () => {
+const CompanyAddJobs = () => {
   
     const auth = localStorage.getItem("company");
     const navigate = useNavigate();
@@ -164,4 +164,4 @@ const CompanyJobs = () => {
         </div>
     );
 }
-export default CompanyJobs;
+export default CompanyAddJobs;

@@ -11,8 +11,6 @@ const CompEditProfile = () => {
     const _id = JSON.parse(auth)._id;
     const [name, setName] = useState(JSON.parse(auth).name);
     const [email, setEmail] = useState(JSON.parse(auth).email);
-    const [password, setPassword] = useState("");
-    const [password2, setPassword2] = useState("");
     const [location, setLocation] = useState(JSON.parse(auth).location);
     const [phone, setPhone] = useState(JSON.parse(auth).phone);
     const [logo, setLogo] = useState(JSON.parse(auth).logo);
@@ -22,7 +20,7 @@ const CompEditProfile = () => {
     const updateComp = async () => {
         let result = await fetch ('http://localhost:5000/companyedit', {
             method : 'post',
-            body : JSON.stringify({_id, name, email, location, logo, password, phone}),
+            body : JSON.stringify({_id, name, email, location, logo, phone}),
             headers : {
                 mode: 'no-cors',
                 'Content-Type' : 'application/json',
@@ -46,6 +44,7 @@ const CompEditProfile = () => {
 
     <div className="col-lg-8">
     <div className="editprofile">
+        <br />
         <h2 id="editHeading">&nbsp;&nbsp; Edit Profile</h2>
     <div className="align-edit-profile">
 
@@ -61,19 +60,7 @@ const CompEditProfile = () => {
         <input type="email" className="form-control" placeholder="example@company.com" value={email} onChange={(event) => setEmail(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
-    <br/>
-    <span><b>&nbsp; New Password  </b></span>
-    <div className="input-group">
-        <input type="password" className="form-control" value={password} onChange={(event) => setPassword(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
-    </div>
-
-
-    <br/>
-    <span id="re-enter"><b>&nbsp; *Re-enter the above password</b></span>
-    <div className="input-group">
-        <input type="password" className="form-control" aria-label="Dollar amount (with dot and two decimal places)"/>
-    </div>
-
+    
     <br/>
     <span><b>&nbsp; Location  </b> </span>
     <div className="input-group">
@@ -90,6 +77,12 @@ const CompEditProfile = () => {
     <span><b>&nbsp; Logo Link </b> </span>
     <div className="input-group">
         <input type="link" className="form-control" placeholder="www.logolink.com" value={logo} onChange={(event) => setLogo(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
+    </div>
+
+    <br/>
+
+    <div className="input-group">
+        <h5>&nbsp; To change the password, <Link to='/CompanyDash/ChangePassword'>click here</Link></h5>
     </div>
 
     <br/>

@@ -12,8 +12,10 @@ import StudPrivateContent from './Assets/JSX/StudPrivateContent';
 import CompPrivateContent from './Assets/JSX/CompPrivateContent';
 import StudEditProfile from './Assets/JSX/StudEditProfile';
 import CompEditProfile from './Assets/JSX/CompEditProfile';
-import CompanyJobs from './Assets/JSX/CompanyJobs';
-import JobsList from './Assets/JSX/JobsList';
+import CompanyAddJobs from './Assets/JSX/CompanyAddJobs';
+import CompJobsPosted from './Assets/JSX/CompJobsPosted';
+import CompPassword from './Assets/JSX/CompPassword';
+import StudPassword from './Assets/JSX/StudPassword';
 
 
 function App() {
@@ -25,14 +27,15 @@ function App() {
         <Route path='/StudentDash/Jobs' element={<StudJobs/>}></Route>
         <Route path='/StudentDash/EditProfile' element={<StudEditProfile/>}></Route>
         <Route path='/StudentDash' element={<StudDashboard/>}></Route>
+        <Route path='/StudentDash/ChangePassword' element={<StudPassword/>}></Route>
         </Route>
 
         <Route element={<CompPrivateContent/>}>
         <Route path='/CompanyDash' element={<CompanyDash/>}></Route>
         <Route path='/CompanyDash/EditProfile' element={<CompEditProfile/>}></Route>
-        <Route path='/CompanyDash/AddJob' element={<CompanyJobs/>}></Route>
-         <Route path='/CompanyDash/JobsPosted' element={<JobsList/>}></Route>
-        {/* <Route path='/CompanyDash/JobsPosted/:comp' element={<JobsList/>}></Route> */}
+        <Route path='/CompanyDash/AddJob' element={<CompanyAddJobs/>}></Route>
+         <Route path='/CompanyDash/JobsPosted' element={<CompJobsPosted/>}></Route>
+         <Route path='/CompanyDash/ChangePassword' element={<CompPassword/>}></Route>
         </Route>
 
 
@@ -42,6 +45,7 @@ function App() {
         <Route path='/Register' element={<Register/>}></Route>
         <Route path='/Login/OTP' element={<OTP/>}></Route>
         <Route path='/Register/Companies' element={<RegisterCom/>}></Route>
+
 
       </Routes>
     </div>

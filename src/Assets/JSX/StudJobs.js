@@ -6,6 +6,9 @@ import '../CSS/StudJobs.css';
 
 const StudJobs = () => {
     
+  const auth = localStorage.getItem("student");
+  const sid = JSON.parse(auth)._id;
+
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
@@ -42,7 +45,28 @@ const StudJobs = () => {
       return (temp);
       
     }
+    
+    
+    const apply = async (sid, jid) => {
+      console.warn(sid, jid);
+      let result = await fetch('http://localhost:5000/studentapply', {
+        method : "post",
+            body : JSON.stringify({
+                sid, jid
+            }),
+            headers : {
+                mode: 'no-cors',
+                'Content-Type' : 'application/json',
+                "Access-Control-Allow-Origin" : "*",
+                "Access-Control-Allow-Credentials" : true 
+            }
+      });
 
+      alert("Applied Successfully!");
+      result = await result.json();
+      
+
+    }
 
         return(
         <div id='studjobs'>
@@ -254,7 +278,7 @@ const StudJobs = () => {
                           </div>
                         </div>
                         <br />
-                        <Link className="btn btn-outline-primary">Apply</Link>
+                        <button className="btn btn-outline-primary" onClick={() => apply(sid, item._id)}>Apply</button>
                         <br /><br />
 
                       </div>

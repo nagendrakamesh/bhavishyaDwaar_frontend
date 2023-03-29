@@ -48,7 +48,6 @@ const StudJobs = () => {
     
     
     const apply = async (sid, jid) => {
-      console.warn(sid, jid);
       let result = await fetch('http://localhost:5000/studentapply', {
         method : "post",
             body : JSON.stringify({
@@ -63,9 +62,10 @@ const StudJobs = () => {
       });
 
       alert("Applied Successfully!");
+
       result = await result.json();
       
-
+      navigate('/StudentDash');
     }
 
         return(

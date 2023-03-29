@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React , {useState, useEffect} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import '../CSS/dashboard.css';
 
@@ -6,12 +6,46 @@ import '../CSS/dashboard.css';
 const StudDashboard = () => {
 
   const auth = localStorage.getItem("student");
+  const sid = JSON.parse(auth)._id;
   
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
     navigate("/Login");
   }
+
+    const [appl, setAppl] = useState([]);
+
+    useEffect(() => {
+      getAppl();
+    }, []);
+
+
+  const getAppl = async () => {
+    let result = await fetch(`http://localhost:5000/applydjobs/${sid}`);
+    result = await result.json();
+    setAppl(result);
+  }
+
+
+  const date_format = (date) => {
+    let temp = "";
+    temp = temp + date.charAt(8) + date.charAt(9) + "-" + date.charAt(5) + date.charAt(6) + "-";
+    temp = temp + date.charAt(0) + date.charAt(1) + date.charAt(2) + date.charAt(3);
+    return (temp);
+    
+  }
+
+
+const today = new Date();
+const yyyy = today.getFullYear();
+let mm = today.getMonth() + 1; // Months start at 0!
+let dd = today.getDate();
+
+if (dd < 10) dd = '0' + dd;
+if (mm < 10) mm = '0' + mm;
+
+const formattedToday = dd + '/' + mm + '/' + yyyy;
 
         return(
             <div id='dashboard_body'>
@@ -153,59 +187,23 @@ const StudDashboard = () => {
                 <br/>
                 <div className="row">
 
+                  {
+                  appl.map((item) =>
+
                 <div className="col col-lg-3 col-md-6">
                 <div className="card jobcard" id='sty_31'>
                     <div className="card-body" id="cardBody">
-                      <h5 className="card-title"><img src="https://play-lh.googleusercontent.com/kHRf85euDvW-Kg7ThXK2vv-J-Yye9uxoo6GQvUcAwudNRz1sQvXubAl_m2bu6KJofA" alt="img" className="compimg"/> Microsoft</h5>
-                      <p className="card-text">Position : SDE-1 <br/> 
-                        Location : Hyderabad <br/> 
-                        Applied On : 15/08/2047 <br/>
+                      <h5 className="card-title"><img src={item.jobid.logo} alt="img" className="compimg"/> {item.jobid.name}</h5>
+                      <p className="card-text">Position : {item.jobid.position} <br/> 
+                        Location : {item.jobid.location} <br/> 
+                        Applied On : {formattedToday} <br/>
                        </p>
-                      <a href="#" className="btn btn-primary">View Details</a>
+                      <button className="btn btn-dark" id='withdraw'>Withdraw</button>
                     </div>
                   </div>
                 </div>
 
-
-                <div className="col col-lg-3 col-md-6">
-                    <div className="card jobcard" id='sty_4'>
-                        <div className="card-body" id="cardBody">
-                          <h5 className="card-title"><img src="https://play-lh.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1" alt="img" className="compimg"/> Google</h5>
-                          <p className="card-text">Position : SWE-1 <br/> 
-                            Location : Hyderabad <br/> 
-                            Applied On : 15/08/2047 <br/>
-                           </p>
-                          <a href="#" className="btn btn-primary">View Details</a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col col-lg-3 col-md-6">
-                        <div className="card jobcard" id='sty_5'>
-                            <div className="card-body" id="cardBody">
-                              <h5 className="card-title"><img src="https://pngimg.com/uploads/amazon/amazon_PNG5.png" alt="img" className="compimg"/> Amazon</h5>
-                              <p className="card-text">Position : SDE-2 <br/> 
-                                Location : Hyderabad <br/> 
-                                Applied On : 15/08/2047 <br/>
-                               </p>
-                              <a href="#" className="btn btn-primary">View Details</a>
-                            </div>
-                          </div>
-                        </div>
-                    
-                        <div className="col col-lg-3 col-md-6">
-                            <div className="card jobcard" id='sty_6'>
-                                <div className="card-body" id="cardBody">
-                                  <h5 className="card-title"><img src="https://play-lh.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1" alt="img" className="compimg"/> Google</h5>
-                                  <p className="card-text">Position : SWE-1 <br/> 
-                                    Location : Bengaluru <br/> 
-                                    Applied On : 15/08/2047 <br/>
-                                   </p>
-                                  <a href="#" className="btn btn-primary">View Details</a>
-                                </div>
-                              </div>
-                            </div>
-                        
+              )};
 
                 </div>
                 <br/><br/>

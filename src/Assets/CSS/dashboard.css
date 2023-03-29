@@ -91,3 +91,8 @@
 {
     text-align: center;
 }
+#withdraw{
+    /* float: right; */
+    margin-left: 4rem;
+    margin-right: 4rem;
+}

@@ -14,7 +14,7 @@ const CompJobsPosted = () => {
     navigate("/Login");
   }
 
-    const auth = localStorage.getItem("company");
+    // const auth = localStorage.getItem("company");
     // const [search,setSearchParam] = useState([""]);
     const [jobs, setJobs] = useState([]);
 

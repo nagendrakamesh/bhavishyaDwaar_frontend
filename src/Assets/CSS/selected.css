@@ -25,7 +25,7 @@
     margin-right: 15px;
 }
 
-#sty_appl
+#sty_sel
 {
     width: 100%;
 }
@@ -41,4 +41,12 @@
 
 .applbtn{
     float: right;
+}
+.compimg{
+    height: 30px;
+    width: 30px;
+}
+#stud_appl{
+    margin-right: 6vw;
+    margin-left: 6vw;
 }

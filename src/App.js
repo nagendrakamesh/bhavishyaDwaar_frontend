@@ -18,6 +18,8 @@ import CompPassword from './Assets/JSX/CompPassword';
 import StudPassword from './Assets/JSX/StudPassword';
 import CompList from './Assets/JSX/Complist';
 import CompAppl from './Assets/JSX/CompAppl';
+import CompAccepted from './Assets/JSX/CompAccepted';
+import StudSelected from './Assets/JSX/StudSelected';
 
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
         <Route path='/StudentDash' element={<StudDashboard/>}></Route>
         <Route path='/StudentDash/ChangePassword' element={<StudPassword/>}></Route>
         <Route path='/StudentDash/CompanyList' element={<CompList/>}></Route>
+        <Route path='/StudentDash/Selected' element={<StudSelected/>}></Route>
         </Route>
 
         <Route element={<CompPrivateContent/>}>
@@ -39,6 +42,7 @@ function App() {
          <Route path='/CompanyDash/JobsPosted' element={<CompJobsPosted/>}></Route>
          <Route path='/CompanyDash/ChangePassword' element={<CompPassword/>}></Route>
          <Route path='/CompanyDash/Requests' element={<CompAppl/>}></Route>
+         <Route path='/CompanyDash/Accepted' element={<CompAccepted/>}></Route>
         </Route>
 
 

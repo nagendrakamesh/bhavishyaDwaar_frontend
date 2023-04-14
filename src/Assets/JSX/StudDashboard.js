@@ -121,6 +121,9 @@ const formattedToday = dd + '/' + mm + '/' + yyyy;
           <li className="nav-item">
           <Link className="nav-link active" to='/StudentDash/CompanyList'>Companies</Link>
           </li>
+          <li className="nav-item">
+          <Link className="nav-link active" to='/StudentDash/Selected'>Selected</Link>
+          </li>
         </ul>
         
       </div>

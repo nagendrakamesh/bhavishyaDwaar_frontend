@@ -48,6 +48,9 @@ const CompanyDash = () =>{
          <li className="nav-item">
          <Link className="nav-link active" to='/CompanyDash/Requests'>Applications</Link>
          </li>
+         <li className="nav-item">
+         <Link className="nav-link active" to='/CompanyDash/Accepted'>Accepted</Link>
+         </li>
        </ul>
        
      </div>

@@ -14,6 +14,7 @@ const CompPassword = () => {
     const navigate = useNavigate();
 
     const updateCompPass = async () => {
+        if(password==password2){
         let result = await fetch ('http://localhost:5000/editcomppswd', {
             method : 'post',
             body : JSON.stringify({_id, password}),
@@ -28,6 +29,7 @@ const CompPassword = () => {
 
         window.alert("Password Updated Successfully!");
         navigate('/CompanyDash');
+    }
 
     }
 

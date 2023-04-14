@@ -3,7 +3,7 @@ import {Link, useNavigate} from 'react-router-dom';
 
 import '../CSS/applications.css';
 
-const CompAppl = () => {
+const CompAccepted = () => {
 
     const navigate = useNavigate();
     const logout = () => {
@@ -34,8 +34,8 @@ const CompAppl = () => {
     
     }
 
-    const decline = async (stid, jid, name) => {
-        let result = fetch("http://localhost:5000/decline", {
+    const remove = async (stid, jid, name) => {
+        let result = fetch("http://localhost:5000/remove", {
             method : 'post',
             body : JSON.stringify({
                 stid, jid
@@ -54,38 +54,15 @@ const CompAppl = () => {
                 console.log(err);
             });
         
-            alert(`Declined ${name}'s Application!`);
+            alert(`Removed ${name}`);
             window.location.reload(true);
         
             result = await result.json();
 
     }
 
-    const accept = async (stid, jid, name) => {
-        let result = await fetch('http://localhost:5000/accept', {
-          method : "post",
-              body : JSON.stringify({
-                  stid, jid
-              }),
-              headers : {
-                  mode: 'no-cors',
-                  'Content-Type' : 'application/json',
-                  "Access-Control-Allow-Origin" : "*",
-                  "Access-Control-Allow-Credentials" : true 
-              }
-        });
-  
-        result = await result.json();
-        
-        alert(`Accepted ${name}'s Application!`);
-        window.location.reload(true);
-        result = await result.json();
-
-      }
-
     return(
         <div>
-
             <header>
             <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary" id='hemanthnav2'>
 
@@ -207,26 +184,24 @@ const CompAppl = () => {
                     {
                     appl.map((item) =>
 
-                        item.students.map((st) =>
+                        item.accepted.map((std) =>
                     
     
                     <div className="col col-lg-4 col-md-6">
                     <div className="card jobcard" id='sty_appl'>
                         <div className="card-body" id="cardBody">
-                        {/* <h5 className="card-title"><img src='https://yt3.googleusercontent.com/ytc/AL5GRJVez8i3_M6BCO7UQawLDIoK2PSe9PmjTP5Bi0IKqA=s900-c-k-c0x00ffffff-no-rj' alt="img" className="compimg"/> Microsoft</h5> */}
                         <p className="card-text">
                         Job Role : {item.jobid.position}<br/>
-                        Name : {st.name}<br/>
-                        Roll Number : {st.rollno}<br/>
-                        Email :  {st.email}<br/> 
-                        Phone : {st.phone} <br/> 
+                        Name : {std.name}<br/>
+                        Roll Number : {std.rollno}<br/>
+                        Email :  {std.email}<br/> 
+                        Phone : {std.phone} <br/> 
                         Resume : To be added <br/>
                        </p>
                        
                        <span className='applbtn'>
-                       <button className="btn btn-primary"  onClick={() => accept(st._id, item.jobid._id, st.name)}>Accept</button> 
+                       <button className="btn btn-outline-danger" onClick={() => remove(std._id, item.jobid._id, std.name)}>Remove</button> 
                        &nbsp; &nbsp;
-                      <button className="btn btn-outline-danger" onClick={() => decline(st._id, item.jobid._id, st.name)}>Decline</button>
                       </span>
 
                         </div>
@@ -242,9 +217,7 @@ const CompAppl = () => {
                     </div>
                         <br /><br /><br /><br />
             </main>
-
-
         </div>
     );
 }
-export default CompAppl;
+export default CompAccepted;

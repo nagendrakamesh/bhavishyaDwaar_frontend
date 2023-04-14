@@ -18,6 +18,7 @@ const CompEditProfile = () => {
     const navigate = useNavigate();
 
     const updateComp = async () => {
+        alert("Details Updated Successfully! Please logout and sign in again to see updated details.");
         let result = await fetch ('http://localhost:5000/companyedit', {
             method : 'post',
             body : JSON.stringify({_id, name, email, location, logo, phone}),
@@ -29,7 +30,6 @@ const CompEditProfile = () => {
             }
         });
 
-        alert("Details Updated Successfully!");
         navigate('/CompanyDash');
         result = await result.json();
 
@@ -95,7 +95,7 @@ const CompEditProfile = () => {
     </div>
     
     <div className="col-8">
-        <button onClick={updateComp} className="btn btn-primary" ><b>Save Changes</b></button>
+        <Link type='button' onClick={updateComp} to='/CompanyDash' className="btn btn-primary" ><b>Save Changes</b></Link>
         <br/>
     </div>
 

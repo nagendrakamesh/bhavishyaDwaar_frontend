@@ -25,13 +25,25 @@ const CompJobsPosted = () => {
     const getJobs = async() => {
        const auth = localStorage.getItem('company');
        const compName = JSON.parse(auth).name;
-        let result = await fetch (`http://localhost:5000/jobs/${compName}`)
-        result = await result.json()
+        let result = await fetch (`http://localhost:5000/jobs/${compName}`);
+        result = await result.json();
+        if(result!="error"){
             setJobs(result);
-            // setSearchParam(result);
+        }
+        else{
+          console.warn("error");
+        }
           
     }
-    // console.warn(jobs);
+
+    const deleteJob = async(jobid) => {
+      let result = await fetch(`http://localhost:5000/deletejob/${jobid}`, {
+        method : "Delete"
+      });
+      // console.warn(result);
+      window.location.reload(true);
+    }
+    
 
     const target_value = (val) => {
       return ('#id' + String(val));
@@ -81,6 +93,9 @@ const CompJobsPosted = () => {
      </li>
      <li className="nav-item">
      <Link className="nav-link active" to='/CompanyDash/Requests'>Applications</Link>
+     </li>
+     <li className="nav-item">
+     <Link className="nav-link active" to='/CompanyDash/Accepted'>Accepted</Link>
      </li>
    </ul>
    
@@ -205,7 +220,7 @@ const CompJobsPosted = () => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-danger" onClick={() => deleteJob(item._id)}>Delete</button>
                     </div>
                     </div>
                 </div>

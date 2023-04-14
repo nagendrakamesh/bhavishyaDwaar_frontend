@@ -65,11 +65,12 @@ const CompanyAddJobs = () => {
     }
 
     const students = [];
+    const accepted = [];
     const makeField = async (jobid) => {
         let result = await fetch('http://localhost:5000/appliedJobs', {
             method : "post",
             body : JSON.stringify({
-                jobid, students, compid
+                jobid, students, compid, accepted
             }),
             headers : {
                 mode: 'no-cors',

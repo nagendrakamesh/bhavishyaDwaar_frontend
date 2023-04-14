@@ -18,6 +18,7 @@ const StudEditProfile = () => {
     const navigate = useNavigate();
 
     const updateSt = async () => {
+        alert("Details Updated Successfully! Please logout and sign in again to see updated details.");
         let result = await fetch ('http://localhost:5000/studentedit', {
             method : 'post',
             body : JSON.stringify({_id, name, email, rollno, phone}),
@@ -30,7 +31,7 @@ const StudEditProfile = () => {
         });
         result = await result.json();
 
-        window.alert("Details Updated Successfully!");
+        // window.alert("Details Updated Successfully!");
         navigate('/StudentDash');
 
     }
@@ -60,18 +61,6 @@ const StudEditProfile = () => {
         <input type="email" className="form-control" placeholder="example@email.com" value={email} onChange={(event) => setEmail(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
     </div>
 
-    {/* <br/>
-    <span><b>&nbsp; New Password  </b></span>
-    <div className="input-group">
-        <input type="password" className="form-control" value={password} onChange={(event) => setPassword(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
-    </div>
-
-
-    <br/>
-    <span id="re-enter"><b>&nbsp; *Re-enter the above password</b></span>
-    <div className="input-group">
-        <input type="password" className="form-control" value={password2} onChange={(event) => setPassword2(event.target.value)} aria-label="Dollar amount (with dot and two decimal places)"/>
-    </div> */}
 
     <br/>
     <span><b>&nbsp; Roll Number  </b> </span>
@@ -101,7 +90,7 @@ const StudEditProfile = () => {
     </div>
     
     <div className="col-8">
-        <button type='button' className="btn btn-primary" onClick={updateSt} ><b>Save Changes</b></button>
+        <Link type='button' className="btn btn-primary" onClick={updateSt} to='/StudentDash' ><b>Save Changes</b></Link>
         <br/>
     </div>
 

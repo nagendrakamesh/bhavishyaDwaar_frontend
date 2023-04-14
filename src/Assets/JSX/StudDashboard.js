@@ -1,6 +1,8 @@
 import React , {useState, useEffect} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
+
 import '../CSS/dashboard.css';
+import '../CSS/loggednav.css'
 
 
 const StudDashboard = () => {
@@ -23,18 +25,57 @@ const StudDashboard = () => {
 
   const getAppl = async () => {
     let result = await fetch(`http://localhost:5000/applydjobs/${sid}`);
+    
     result = await result.json();
-    setAppl(result);
-  }
-
-
-  const date_format = (date) => {
-    let temp = "";
-    temp = temp + date.charAt(8) + date.charAt(9) + "-" + date.charAt(5) + date.charAt(6) + "-";
-    temp = temp + date.charAt(0) + date.charAt(1) + date.charAt(2) + date.charAt(3);
-    return (temp);
+    if(result != "error"){
+      setAppl(result);
+    }
+    else{
+      console.error("Error incurred!");
+    }
     
   }
+
+
+  // const date_format = (date) => {
+  //   let temp = "";
+  //   temp = temp + date.charAt(8) + date.charAt(9) + "-" + date.charAt(5) + date.charAt(6) + "-";
+  //   temp = temp + date.charAt(0) + date.charAt(1) + date.charAt(2) + date.charAt(3);
+  //   return (temp);
+    
+  // }
+
+
+
+  const withdraw = async (stid, jid) => {
+    let result = await fetch('http://localhost:5000/studentwithdraw', {
+      method : "post",
+          body : JSON.stringify({
+              stid, jid
+          }),
+          headers : {
+              mode: 'no-cors',
+              'Content-Type' : 'application/json',
+              "Access-Control-Allow-Origin" : "*",
+              "Access-Control-Allow-Credentials" : true 
+          }
+    }).then( err => {
+      if(err){
+        throw (err);
+      }
+    }).catch( err => {
+      console.log(err);
+    });
+
+    alert("Withdrew Successfully!");
+    window.location.reload(true);
+
+    result = await result.json();
+    
+    navigate('/StudentDash');
+  }
+
+
 
 
 const today = new Date();
@@ -50,23 +91,24 @@ const formattedToday = dd + '/' + mm + '/' + yyyy;
         return(
             <div id='dashboard_body'>
             <header>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-body-tertiary">
+            <nav id='hemanthnav' className="navbar navbar-expand-lg navbar-dark bg-body-tertiary-dark">
    
     <div className="container-fluid">
       <button
         className="navbar-toggler"
         type="button"
-        data-mdb-toggle="collapse"
-        data-mdb-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <i className="fas fa-bars"></i>
+        {/* <i className="fas fa-bars"></i> */}
+        <span className='navbar-toggler-icon'></span>
       </button>
   
       
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <div className="collapse navbar-collapse" id="navbarNav">
         
         <Link className="navbar-brand mt-2 mt-lg-0" to='/'>
           Bhavishya Dwar
@@ -181,16 +223,20 @@ const formattedToday = dd + '/' + mm + '/' + yyyy;
 
             <div id="stud_appl">
                 <br/>
-                {/* <center> */}
+                
                     <h2 id='sty_2'>My applications</h2>
                 {/* </center> */}
                 <br/>
+
+                {
+                 
+                  
                 <div className="row">
-
                   {
-                  appl.map((item) =>
+                  appl.map((item, index) =>
 
-                <div className="col col-lg-3 col-md-6">
+
+                <div className="col col-lg-3 col-md-6" key={index}>
                 <div className="card jobcard" id='sty_31'>
                     <div className="card-body" id="cardBody">
                       <h5 className="card-title"><img src={item.jobid.logo} alt="img" className="compimg"/> {item.jobid.name}</h5>
@@ -198,14 +244,22 @@ const formattedToday = dd + '/' + mm + '/' + yyyy;
                         Location : {item.jobid.location} <br/> 
                         Applied On : {formattedToday} <br/>
                        </p>
-                      <button className="btn btn-dark" id='withdraw'>Withdraw</button>
+                      <button className="btn btn-dark" id='withdraw' onClick={() => withdraw(sid, item.jobid._id)}>Withdraw</button>
                     </div>
                   </div>
                 </div>
+  
+
+                // :
+
+                // <h2>No Jobs Applied</h2>
 
               )};
 
                 </div>
+                }
+
+
                 <br/><br/>
                 <div id='cen'>
                     <Link to='/StudentDash/Jobs'><button type="button" className="btn btn-light" id='sty_7'><b>Browse for jobs</b></button></Link>

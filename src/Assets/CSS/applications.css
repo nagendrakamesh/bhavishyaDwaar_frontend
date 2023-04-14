@@ -1,0 +1,44 @@
+#cardBody{
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#stud_appl{
+    margin-right: 6vw;
+    margin-left: 6vw;
+}
+.jobcard{
+    margin: 5px !important;
+}
+#navbar{
+    background-color: transparent !important;
+}
+.logbutton{
+    text-decoration: none;
+    color: #ffffff;
+    padding-left : 7px;
+    padding-right: 7px;
+    font-weight: 400;
+}
+#logbuttons2{
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+#sty_appl
+{
+    width: 100%;
+}
+
+#cen
+{
+    text-align: center;
+}
+
+#dashboard_body{
+    background-color: #006699;
+}
+
+.applbtn{
+    float: right;
+}

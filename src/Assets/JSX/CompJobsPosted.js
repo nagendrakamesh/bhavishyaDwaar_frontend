@@ -52,23 +52,24 @@ const CompJobsPosted = () => {
     return(
       <div id='studjobs'>
       <header>
-       <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+       <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary" id='hemanthnav2'>
 
-<div className="container-fluid">
- <button
-   className="navbar-toggler"
-   type="button"
-   data-mdb-toggle="collapse"
-   data-mdb-target="#navbarSupportedContent"
-   aria-controls="navbarSupportedContent"
-   aria-expanded="false"
-   aria-label="Toggle navigation"
- >
-   <i className="fas fa-bars"></i>
- </button>
-
- 
- <div className="collapse navbar-collapse" id="navbarSupportedContent">
+       <div className="container-fluid">
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        {/* <i className="fas fa-bars"></i> */}
+        <span className='navbar-toggler-icon'></span>
+      </button>
+  
+      
+      <div className="collapse navbar-collapse" id="navbarNav">
    
    <Link className="navbar-brand mt-2 mt-lg-0" to='/'>
      Bhavishya Dwar
@@ -79,7 +80,7 @@ const CompJobsPosted = () => {
        <Link to='/CompanyDash/JobsPosted' className="nav-link active">Jobs Posted</Link>
      </li>
      <li className="nav-item">
-       <a className="nav-link active" href="#">Companies</a>
+     <Link className="nav-link active" to='/CompanyDash/Requests'>Applications</Link>
      </li>
    </ul>
    
@@ -184,7 +185,33 @@ const CompJobsPosted = () => {
                <div className='d-flex flex-row'>
                  <button className="btn btn-outline-primary m-2" type="button" data-bs-toggle="offcanvas" data-bs-target={target_value(item._id)} aria-controls="offcanvasWithBothOptions">View Details</button>
 
-                 <button className="btn btn-outline-danger m-2" type="button"  aria-controls="offcanvasWithBothOptions">Delete</button>
+                 {/* <button className="btn btn-outline-danger m-2" type="button"  aria-controls="offcanvasWithBothOptions">Delete</button> */}
+
+
+                 <button type="button" aria-controls="offcanvasWithBothOptions" class="btn btn-outline-danger m-2" data-bs-toggle="modal" data-bs-target={target_value(item._id) + 'khk'}>
+                    Delete
+                </button>
+
+
+                <div class="modal fade" id={id_value(item._id) + 'khk'} data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete a Job</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this job?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+
                </div>
 
 

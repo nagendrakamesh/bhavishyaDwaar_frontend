@@ -18,23 +18,24 @@ const CompanyDash = () =>{
         return(
             <div id='dashboard_body'>
             <header>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-body-tertiary">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-body-tertiary" id='hemanthnav'>
    
-   <div className="container-fluid">
-     <button
-       className="navbar-toggler"
-       type="button"
-       data-mdb-toggle="collapse"
-       data-mdb-target="#navbarSupportedContent"
-       aria-controls="navbarSupportedContent"
-       aria-expanded="false"
-       aria-label="Toggle navigation"
-     >
-       <i className="fas fa-bars"></i>
-     </button>
- 
-     
-     <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <div className="container-fluid">
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        {/* <i className="fas fa-bars"></i> */}
+        <span className='navbar-toggler-icon'></span>
+      </button>
+  
+      
+      <div className="collapse navbar-collapse" id="navbarNav">
        
        <Link className="navbar-brand mt-2 mt-lg-0" to='/'>
          Bhavishya Dwar
@@ -45,7 +46,7 @@ const CompanyDash = () =>{
            <Link to='/CompanyDash/JobsPosted' className="nav-link active">Jobs Posted</Link>
          </li>
          <li className="nav-item">
-           <a className="nav-link active" href="#">Companies</a>
+         <Link className="nav-link active" to='/CompanyDash/Requests'>Applications</Link>
          </li>
        </ul>
        
@@ -153,19 +154,21 @@ const CompanyDash = () =>{
           </div>
           <br/><br/>
           </div>
-            <div id="stud_appl">
-                <br/>
-                {/* <center> */}
-                    <h2 id='sty_2'>Job Requests</h2>
-                {/* </center> */}
+             {/* <div id="stud_appl">
                 <br/>
                 
-                <div className="card" id='sty_1' >
-              <div className="card-body">
-                    <h4 className='text-black'>&nbsp; Futher job requests</h4>       
-                    </div>
-            </div>
-        </div>
+                    <h2 id='sty_2'>Job Requests</h2>
+                
+                <br/>
+                    
+                    <div className="card" id='sty_1' >
+                  <div className="card-body">
+                        <h4 className='text-black'>&nbsp; Futher job requests</h4>       
+                        </div> 
+                </div>
+            </div> */}
+
+            
     </main>
 
     <div>

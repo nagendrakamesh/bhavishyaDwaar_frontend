@@ -26,23 +26,24 @@ const CompList = () => {
     return(
         <div className="complist">
             <header>
-                    <nav className="navbar navbar-expand-lg navbar-dark bg-body-tertiary">
+                    <nav className="navbar navbar-expand-lg navbar-dark bg-body-tertiary" id='hemanthnav'>
    
                     <div className="container-fluid">
-                        <button
+                    <button
                         className="navbar-toggler"
                         type="button"
-                        data-mdb-toggle="collapse"
-                        data-mdb-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
                         aria-expanded="false"
                         aria-label="Toggle navigation"
-                        >
-                        <i className="fas fa-bars"></i>
-                        </button>
+                    >
+                        {/* <i className="fas fa-bars"></i> */}
+                        <span className='navbar-toggler-icon'></span>
+                    </button>
+                
                     
-                        
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div className="collapse navbar-collapse" id="navbarNav">
                         
                         <Link className="navbar-brand mt-2 mt-lg-0" to='/'>
                             Bhavishya Dwar

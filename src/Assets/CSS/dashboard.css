@@ -14,9 +14,9 @@
 .jobcard{
     margin: 5px !important;
 }
-#dashboard_body{
+/* #dashboard_body{
     background-color: #006699;
-}
+} */
 #navbar{
     background-color: transparent !important;
 }
@@ -68,7 +68,7 @@
 }
 #sty_31
 {
-    width : 20rem;
+    width : 20.25rem;
 }
 #sty_4
 {

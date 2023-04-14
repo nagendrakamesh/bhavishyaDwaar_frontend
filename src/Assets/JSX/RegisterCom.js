@@ -1,18 +1,22 @@
 import React, {useEffect, useState} from "react";
-import {Link, useNavigate} from 'react-router-dom';
+
+import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import '../CSS/RegisterCom.css';
 import regimg from '../PIC/register2.png';
 
 const RegisterCom = () =>{
-    
+  
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [location, setLocation] = useState("");
   const [logo, setLogo] = useState("");
-  const navigate = useNavigate();
+  
   const collectData = async () => {
     let result = await fetch('http://localhost:5000/registerCompany', {
         method : "post",
@@ -24,17 +28,19 @@ const RegisterCom = () =>{
             "Access-Control-Allow-Credentials" : true 
         }
     });
+    alert('Registered Successfully');
     result = await result.json();
     navigate('/Login');
 }
 
   // const navigate = useNavigate();
-  useEffect = () => {
-    const auth = localStorage.getItem("company");
-    if(auth){
-      navigate("/CompanyDash");
-    }
-  }
+
+  // useEffect = () => {
+  //   const auth = localStorage.getItem("company");
+  //   if(auth){
+  //     navigate("/CompanyDash");
+  //   }
+  // }
 
 
         return(
@@ -42,13 +48,14 @@ const RegisterCom = () =>{
 
           <header>
                 <div id='returnBG'>
-                <div id='return-comp'>
-                    <Link to='/Register'  id='nolink_2'><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-arrow-return-left" viewBox="0 0 16 16" href='https://www.w3schools.com'>
+                <div id='m_1'>
+                    <Link to='/Register'  id='nolink_1'><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-arrow-return-left" viewBox="0 0 16 16" href='https://www.w3schools.com'>
                       <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" id='i_1'/>
                     </svg> Return</Link>
                     </div>
                     </div>
             </header>
+
     
         <main>
             <br/><br/>
@@ -108,7 +115,7 @@ const RegisterCom = () =>{
                         </label>
                       </div>
                       <br/>
-                      <a href="#"><button type="submit" onClick={collectData} className="btn btn-dark"><b>Register Now</b></button></a>
+                      <a href="#"><button type="button" onClick={collectData} className="btn btn-dark"><b>Register Now</b></button></a>
                     </div>
               </div>
               

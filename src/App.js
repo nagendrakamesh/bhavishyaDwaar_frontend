@@ -17,13 +17,13 @@ import CompJobsPosted from './Assets/JSX/CompJobsPosted';
 import CompPassword from './Assets/JSX/CompPassword';
 import StudPassword from './Assets/JSX/StudPassword';
 import CompList from './Assets/JSX/Complist';
+import CompAppl from './Assets/JSX/CompAppl';
 
 
 function App() {
   return (
     <div className="App">
       <Routes>
-
         <Route element={<StudPrivateContent/>}>
         <Route path='/StudentDash/Jobs' element={<StudJobs/>}></Route>
         <Route path='/StudentDash/EditProfile' element={<StudEditProfile/>}></Route>
@@ -38,6 +38,7 @@ function App() {
         <Route path='/CompanyDash/AddJob' element={<CompanyAddJobs/>}></Route>
          <Route path='/CompanyDash/JobsPosted' element={<CompJobsPosted/>}></Route>
          <Route path='/CompanyDash/ChangePassword' element={<CompPassword/>}></Route>
+         <Route path='/CompanyDash/Requests' element={<CompAppl/>}></Route>
         </Route>
 
 
@@ -48,7 +49,6 @@ function App() {
         <Route path='/Login/OTP' element={<OTP/>}></Route>
         <Route path='/Register/Companies' element={<RegisterCom/>}></Route>
         
-
 
       </Routes>
     </div>

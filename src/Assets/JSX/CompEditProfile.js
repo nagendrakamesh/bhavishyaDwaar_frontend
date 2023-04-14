@@ -28,10 +28,10 @@ const CompEditProfile = () => {
                 "Access-Control-Allow-Credentials" : true 
             }
         });
-        result = await result.json();
 
-        window.alert("Details Updated Successfully!");
+        alert("Details Updated Successfully!");
         navigate('/CompanyDash');
+        result = await result.json();
 
     }
 

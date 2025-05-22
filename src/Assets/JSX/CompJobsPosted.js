@@ -22,10 +22,12 @@ const CompJobsPosted = () => {
         getJobs();
     }, []);
 
+    const backend_uri = process.env.REACT_APP_BACKEND_URI;
+
     const getJobs = async() => {
        const auth = localStorage.getItem('company');
        const compName = JSON.parse(auth).name;
-        let result = await fetch (`http://localhost:5000/jobs/${compName}`);
+        let result = await fetch (`${backend_uri}jobs/${compName}`);
         result = await result.json();
         if(result!="error"){
             setJobs(result);
@@ -37,7 +39,7 @@ const CompJobsPosted = () => {
     }
 
     const deleteJob = async(jobid) => {
-      let result = await fetch(`http://localhost:5000/deletejob/${jobid}`, {
+      let result = await fetch(`${backend_uri}deletejob/${jobid}`, {
         method : "Delete"
       });
       // console.warn(result);

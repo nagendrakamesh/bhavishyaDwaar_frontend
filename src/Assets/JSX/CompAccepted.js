@@ -20,9 +20,11 @@ const CompAccepted = () => {
       getAppl();
     }, []);
 
+    const backend_uri = process.env.REACT_APP_BACKEND_URI;
+
 
     const getAppl = async () => {
-        let result = await fetch(`http://localhost:5000/compNotify/${compid}`);
+        let result = await fetch(`${backend_uri}compNotify/${compid}`);
         
         result = await result.json();
         if(result != "error"){
@@ -35,7 +37,7 @@ const CompAccepted = () => {
     }
 
     const remove = async (stid, jid, name) => {
-        let result = fetch("http://localhost:5000/remove", {
+        let result = fetch(backend_uri + "remove", {
             method : 'post',
             body : JSON.stringify({
                 stid, jid

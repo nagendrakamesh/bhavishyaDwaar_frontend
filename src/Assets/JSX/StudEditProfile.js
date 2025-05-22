@@ -17,9 +17,11 @@ const StudEditProfile = () => {
 
     const navigate = useNavigate();
 
+    const backend_uri = process.env.REACT_APP_BACKEND_URI;
+
     const updateSt = async () => {
         alert("Details Updated Successfully! Please logout and sign in again to see updated details.");
-        let result = await fetch ('http://localhost:5000/studentedit', {
+        let result = await fetch (backend_uri + 'studentedit', {
             method : 'post',
             body : JSON.stringify({_id, name, email, rollno, phone}),
             headers : {

@@ -13,9 +13,11 @@ const CompPassword = () => {
 
     const navigate = useNavigate();
 
+    const backend_uri = process.env.REACT_APP_BACKEND_URI;
+
     const updateCompPass = async () => {
         if(password==password2){
-        let result = await fetch ('http://localhost:5000/editcomppswd', {
+        let result = await fetch (backend_uri + 'editcomppswd', {
             method : 'post',
             body : JSON.stringify({_id, password}),
             headers : {

@@ -1,6 +1,7 @@
 .complist{
     background-color: #006699;
     height: 100%;
+    min-height: 100vh;
 
 }
 

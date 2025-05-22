@@ -3,21 +3,24 @@ import "../CSS/login.css";
 import {Link, useNavigate} from "react-router-dom";
 import { useEffect } from 'react';
 
+// require("dotenv").configure();
+
 const Login = () =>
   {
+    const backend_uri = process.env.REACT_APP_BACKEND_URI;
 
     const [email, setEmail] = useState( "");
     const [password, setPassword] = useState("");
     const handlelogin = async (e) =>{
       e.preventDefault();
-      let result = await fetch("http://localhost:5000/login",{
+      let result = await fetch(backend_uri + "login",{
         method : 'post',
         body : JSON.stringify({email,password}),
         headers : {
-          mode: 'no-cors',
+          // mode: 'no-cors',
           'Content-Type' : 'application/json',
-          "Access-Control-Allow-Origin" : "*",
-          "Access-Control-Allow-Credentials" : true 
+          // "Access-Control-Allow-Origin" : "*",
+          // "Access-Control-Allow-Credentials" : true 
         }
       });
       result = await result.json();
@@ -57,7 +60,7 @@ const Login = () =>
           <div className="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
             <div className="row gx-lg-5 align-items-center mb-5">
               <div className="col-lg-6 mb-5 mb-lg-0" id='ok_2'>
-              <div className='d-none d-lg-block d-md-block'>
+              <div className='d-none d-lg-block d-md-none'>
                 <h1 className="my-5 display-5 fw-bold ls-tight" id='ok_3'>
                   Opportunities don't<br />
                   <span id='ok_4'> happen, you create them</span>

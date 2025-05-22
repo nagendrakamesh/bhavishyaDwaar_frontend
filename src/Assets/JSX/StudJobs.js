@@ -23,8 +23,10 @@ const StudJobs = () => {
         getJobs();
     }, []);
 
+    const backend_uri = process.env.REACT_APP_BACKEND_URI;
+
     const getJobs = async() => {
-        let result = await fetch ('http://localhost:5000/studjobs');
+        let result = await fetch (backend_uri + 'studjobs');
         result = await result.json();
         setJobs(result);
         
@@ -49,7 +51,7 @@ const StudJobs = () => {
     
     
     const apply = async (sid, jid) => {
-      let result = await fetch('http://localhost:5000/studentapply', {
+      let result = await fetch(backend_uri + 'studentapply', {
         method : "post",
             body : JSON.stringify({
                 sid, jid

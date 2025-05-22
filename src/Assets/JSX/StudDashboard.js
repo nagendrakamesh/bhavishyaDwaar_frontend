@@ -22,9 +22,11 @@ const StudDashboard = () => {
       getAppl();
     }, []);
 
+  
+  const backend_uri = process.env.REACT_APP_BACKEND_URI;
 
   const getAppl = async () => {
-    let result = await fetch(`http://localhost:5000/applydjobs/${sid}`);
+    let result = await fetch(`${backend_uri}applydjobs/${sid}`);
     
     result = await result.json();
     if(result != "error"){
@@ -48,7 +50,7 @@ const StudDashboard = () => {
 
 
   const withdraw = async (stid, jid) => {
-    let result = await fetch('http://localhost:5000/studentwithdraw', {
+    let result = await fetch(backend_uri + 'studentwithdraw', {
       method : "post",
           body : JSON.stringify({
               stid, jid

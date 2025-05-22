@@ -11,8 +11,10 @@ const CompList = () => {
         getComp();
     }, []);
 
+    const backend_uri = process.env.REACT_APP_BACKEND_URI;
+
     const getComp = async () => {
-        let result = await fetch('http://localhost:5000/companylist');
+        let result = await fetch(backend_uri + 'companylist');
         result = await result.json();
         setCompany(result);
     }

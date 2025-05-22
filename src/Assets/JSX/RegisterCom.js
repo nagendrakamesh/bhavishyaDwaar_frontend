@@ -16,9 +16,11 @@ const RegisterCom = () =>{
   const [phone, setPhone] = useState("");
   const [location, setLocation] = useState("");
   const [logo, setLogo] = useState("");
+
+  const backend_uri = process.env.REACT_APP_BACKEND_URI;
   
   const collectData = async () => {
-    let result = await fetch('http://localhost:5000/registerCompany', {
+    let result = await fetch(backend_uri + 'registerCompany', {
         method : "post",
         body : JSON.stringify({name, email, password, phone, location, logo}),
         headers : {

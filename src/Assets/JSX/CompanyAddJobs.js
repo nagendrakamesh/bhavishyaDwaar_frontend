@@ -35,8 +35,10 @@ const CompanyAddJobs = () => {
     const [resp3, setResp3] = useState("");
     const [resp4, setResp4] = useState("");
 
+    const backend_uri = process.env.REACT_APP_BACKEND_URI;
+
     const collectData = async () => {
-        let result = await fetch('http://localhost:5000/jobsPosted', {
+        let result = await fetch(backend_uri + 'jobsPosted', {
             method : "post",
             body : JSON.stringify({
                 name, logo, location, position, gpa, date, abtJob, type,
@@ -67,7 +69,7 @@ const CompanyAddJobs = () => {
     const students = [];
     const accepted = [];
     const makeField = async (jobid) => {
-        let result = await fetch('http://localhost:5000/appliedJobs', {
+        let result = await fetch(backend_uri + 'appliedJobs', {
             method : "post",
             body : JSON.stringify({
                 jobid, students, compid, accepted

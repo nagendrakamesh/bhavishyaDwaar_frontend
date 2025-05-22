@@ -20,9 +20,10 @@ const StudSelected = () => {
       getAppl();
     }, []);
 
+    const backend_uri = process.env.REACT_APP_BACKEND_URI;
 
     const getAppl = async () => {
-        let result = await fetch(`http://localhost:5000/selected/${stid}`);
+        let result = await fetch(`${backend_uri}selected/${stid}`);
         
         result = await result.json();
         if(result != "error"){

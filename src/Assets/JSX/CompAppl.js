@@ -20,9 +20,10 @@ const CompAppl = () => {
       getAppl();
     }, []);
 
+    const backend_uri = process.env.REACT_APP_BACKEND_URI;
 
     const getAppl = async () => {
-        let result = await fetch(`http://localhost:5000/compNotify/${compid}`);
+        let result = await fetch(`${backend_uri}compNotify/${compid}`);
         
         result = await result.json();
         if(result != "error"){
@@ -35,7 +36,7 @@ const CompAppl = () => {
     }
 
     const decline = async (stid, jid, name) => {
-        let result = fetch("http://localhost:5000/decline", {
+        let result = fetch(backend_uri + "decline", {
             method : 'post',
             body : JSON.stringify({
                 stid, jid
@@ -62,7 +63,7 @@ const CompAppl = () => {
     }
 
     const accept = async (stid, jid, name) => {
-        let result = await fetch('http://localhost:5000/accept', {
+        let result = await fetch(backend_uri + 'accept', {
           method : "post",
               body : JSON.stringify({
                   stid, jid

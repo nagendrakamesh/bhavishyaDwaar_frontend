@@ -11,8 +11,11 @@ const RegisterSt = () =>{
     const [rollno, setRollno] = useState("");
     const [phone, setPhone] = useState("");
     const navigate = useNavigate();
+
+    const backend_uri = process.env.REACT_APP_BACKEND_URI;
+
     const collectData = async () => {
-        let result = await fetch('http://localhost:5000/registerStudent', {
+        let result = await fetch(backend_uri + 'registerStudent', {
             method : "post",
             body : JSON.stringify({name, email, password, rollno, phone}),
             headers : {

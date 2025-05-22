@@ -13,8 +13,10 @@ const StudPassword = () => {
 
     const navigate = useNavigate();
 
+    const backend_uri = process.env.REACT_APP_BACKEND_URI;
+
     const updateStudPass = async () => {
-        let result = await fetch ('http://localhost:5000/editstudpswd', {
+        let result = await fetch (backend_uri + 'editstudpswd', {
             method : 'post',
             body : JSON.stringify({_id, password}),
             headers : {

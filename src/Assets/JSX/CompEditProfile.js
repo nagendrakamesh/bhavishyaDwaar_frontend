@@ -16,10 +16,11 @@ const CompEditProfile = () => {
     const [logo, setLogo] = useState(JSON.parse(auth).logo);
 
     const navigate = useNavigate();
+    const backend_uri = process.env.REACT_APP_BACKEND_URI;
 
     const updateComp = async () => {
         alert("Details Updated Successfully! Please logout and sign in again to see updated details.");
-        let result = await fetch ('http://localhost:5000/companyedit', {
+        let result = await fetch (backend_uri + 'companyedit', {
             method : 'post',
             body : JSON.stringify({_id, name, email, location, logo, phone}),
             headers : {
